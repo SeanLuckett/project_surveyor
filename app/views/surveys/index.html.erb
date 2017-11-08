@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-sm-12"><h1 class="text-center">Surveyor: Tell me #allthethings!</h1></div>
+  <div class="col-sm-12">
+    <p>Click on a survey below to take it or create one of your own!</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= link_to 'Create a new survey', '#', class: 'btn btn-primary btn-block' %>
+  </div>
+</div>
+
+<div class="row top-buffer">
+  <div class="col-sm-12">
+    <h2 class="h4"><u>Take a Survey</u></h2>
+  </div>
+</div>
+
+<% surveys.each_with_index do |survey, num| %>
+    <div class="row">
+      <div class="col-sm-12"><strong><%= "#{num + 1}. #{survey.title}" %></strong></div>
+      <div class="col-sm-12"><%= survey.description %></div>
+      <div class="col-sm-12"><em>{hardcoded} 0 Responses</em></div>
+      <div class="row">
+        <div class="col-sm-6"><%= link_to 'Take survey', '#', class: 'btn btn-secondary' %></div>
+        <div class="col-sm-6"><%= link_to 'View results', '#', class: 'btn btn-secondary' %></div>
+      </div>
+    </div>
+<% end %>
+
+

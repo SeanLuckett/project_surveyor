@@ -14,17 +14,17 @@
 <div class="row">
   <div class="col-sm-12">
     <%= form_for survey do |f| %>
-        <div class="form-group">
+        <div class="form-group error">
           <%= f.label :title, 'Survey title', class: 'h4' %>
           <%= f.text_field :title, { placeholder: 'eg. "The personality test"', class: 'form-control' } %>
         </div>
-        <div class="form-group">
+        <div class="form-group error">
           <%= f.label :description, 'Survey description', class: 'h4' %>
           <%= f.text_area :description,
                            { placeholder: 'eg. "Discovering what is unique about all you crazy people"',
                              class: 'form-control' } %>
         </div>
-        <%= f.submit class: 'btn btn-primary btn-block' %>
+        <%= f.submit 'Create survey and begin adding questions', class: 'btn btn-primary btn-block' %>
     <% end %>
   </div>
 </div>

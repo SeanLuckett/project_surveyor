@@ -6,4 +6,22 @@ class SurveysController < ApplicationController
   def new
     render :new, locals: { survey: Survey.new }
   end
+
+  def create
+    survey = Survey.new survey_params
+    if survey.save
+      redirect_to survey
+    else
+      render :new, locals: { survey: survey }
+    end
+  end
+
+  def show
+  end
+
+  private
+
+  def survey_params
+    params.require(:survey).permit :title, :description
+  end
 end

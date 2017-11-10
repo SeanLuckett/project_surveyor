@@ -17,7 +17,10 @@ class SurveysController < ApplicationController
   end
 
   def show
-    render :show, locals: { survey: Survey.find(params[:id]) }
+    survey = Survey.find(params[:id])
+    questions = survey.questions.map { |q| MultiQuestionDecorator.new(q) }
+
+    render :show, locals: { survey: survey, questions: questions }
   end
 
   def add_question

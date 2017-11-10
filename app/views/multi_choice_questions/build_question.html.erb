@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="text-center">Survey Builder</h1>
+    <hr/>
+  </div>
+  <div class="col-sm-4 offset-sm-2 border border-dark border-left-0 border-bottom-0 border-top-0">
+    <h2 class="h4"><span class="text-secondary">1. Build survey</span></h2></div>
+  <div class="col-sm-6"><h2 class="h4">2. Add questions</h2></div>
+</div>
+
+<div class="text-secondary">
+  <div class="row">
+    <div class="col-sm-12 top-buffer">
+      <p>Next, add a question</p>
+    </div>
+    <h3 class="h4 col-sm-12">Title:</h3>
+    <p class="col-sm-12"><%= survey.title %></p>
+  </div>
+  <div class="row">
+    <h3 class="h4 col-sm-12">Description:</h3>
+    <p class="col-sm-12"><%= survey.description %></p>
+    <hr class="col-sm-12"/>
+  </div>
+</div>
+
+<section class="add-question">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="h3 text-center">Add a multiple choice question:</h1>
+    </div>
+    <div class="col-sm-4 offset-sm-2 border border-dark border-left-0 border-bottom-0 border-top-0">
+      <h2 class="h5"><span class="text-secondary">1. Select options</span></h2></div>
+    <div class="col-sm-6"><h2 class="h5">2. Add question text</h2></div>
+    <div class="col-sm-12 top-buffer">
+      <p><em>Next, add question text, followed by text for each answer option.</em></p>
+    </div>
+  </div>
+  <div class="row top-buffer">
+    <div class="col-sm-12">
+      <%= form_for survey do |form| %>
+
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -24,7 +24,7 @@
 <div class="row">
   <h3 class="h4 col-sm-12">Add a questions:</h3>
   <p class="col-sm-12"><em class="text-secondary">Choose which type of question to add.</em></p>
-  <%= form_tag(survey_configure_question_path(survey),
+  <%= form_tag(survey_add_question_path(survey),
                { method: :get, class: 'col-sm-12' }) do %>
       <div class="form-group">
         <%= select_tag 'question_type',

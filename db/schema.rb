@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108204301) do
+ActiveRecord::Schema.define(version: 20171110165417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "multi_choice_questions", force: :cascade do |t|
+    t.bigint "survey_id"
+    t.string "body"
+    t.boolean "required", default: true
+    t.boolean "multipart", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_multi_choice_questions_on_survey_id"
+  end
 
   create_table "surveys", force: :cascade do |t|
     t.string "title", null: false
@@ -22,4 +32,5 @@ ActiveRecord::Schema.define(version: 20171108204301) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "multi_choice_questions", "surveys"
 end

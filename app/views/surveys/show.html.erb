@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="text-center">Survey Builder</h1>
+    <hr/>
+  </div>
+  <div class="col-sm-4 offset-sm-2 border border-dark border-left-0 border-bottom-0 border-top-0">
+    <h2 class="h4"><span class="text-secondary">1. Build survey</span></h2></div>
+  <div class="col-sm-6"><h2 class="h4">2. Add questions</h2></div>
+  <div class="col-sm-12 top-buffer">
+    <p>Next, add a question</p>
+  </div>
+</div>
+
+<div class="row">
+  <h3 class="h4 col-sm-12">Title:</h3>
+  <p class="col-sm-12"><%= survey.title %></p>
+</div>
+<div class="row">
+  <h3 class="h4 col-sm-12">Description:</h3>
+  <p class="col-sm-12"><%= survey.description %></p>
+  <hr class="col-sm-12"/>
+</div>
+
+<div class="row">
+  <h3 class="h4 col-sm-12">Add a questions:</h3>
+  <p class="col-sm-12"><em class="text-secondary">Choose which type of question to add.</em></p>
+  <%= form_tag(survey_add_question_path(survey),
+               { method: :get, class: 'col-sm-12' }) do %>
+      <div class="form-group">
+        <%= select_tag 'question_type',
+                       options_for_select(['Multiple Choice']),
+                       class: 'form-control' %>
+      </div>
+      <%= submit_tag 'Add a new question', class: 'btn btn-primary btn-block' %>
+  <% end %>
+  <hr class="col-sm-12 top-buffer"/>
+</div>
+
+<div class="row">
+  <h3 class="h4 col-sm-12">Existing questions:</h3>
+  <p class="col-sm-12">There are no questions, yet!</p>
+</div>

@@ -17,6 +17,11 @@ class SurveysController < ApplicationController
   end
 
   def show
+    render :show, locals: { survey: Survey.find(params[:id]) }
+  end
+
+  def add_question
+
   end
 
   private

@@ -9,18 +9,7 @@
 </div>
 
 <div class="text-secondary">
-  <div class="row">
-    <div class="col-sm-12 top-buffer">
-      <p>Next, add a question</p>
-    </div>
-    <h3 class="h4 col-sm-12">Title:</h3>
-    <p class="col-sm-12"><%= survey.title %></p>
-  </div>
-  <div class="row">
-    <h3 class="h4 col-sm-12">Description:</h3>
-    <p class="col-sm-12"><%= survey.description %></p>
-    <hr class="col-sm-12"/>
-  </div>
+  <%= render partial: 'surveys/survey_header', locals: { survey: survey } %>
 </div>
 
 <section class="add-question">

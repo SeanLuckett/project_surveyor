@@ -17,6 +17,16 @@ class MultiChoiceQuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    q = MultiChoiceQuestion.find(params[:id])
+
+    if q.destroy
+      redirect_to survey_path q.survey.id
+    else
+      redirect_to :back
+    end
+  end
+
   def build_question
     question = MultiChoiceQuestion.new(q_params)
     params[:num_options].to_i.times do

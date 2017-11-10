@@ -24,7 +24,7 @@
 <div class="row">
   <h3 class="h4 col-sm-12">Add a questions:</h3>
   <p class="col-sm-12"><em class="text-secondary">Choose which type of question to add.</em></p>
-  <%= form_tag(survey_add_question_path(survey),
+  <%= form_tag(survey_configure_question_path(survey),
                { method: :get, class: 'col-sm-12' }) do %>
       <div class="form-group">
         <%= select_tag 'question_type',
@@ -33,10 +33,10 @@
       </div>
       <%= submit_tag 'Add a new question', class: 'btn btn-primary btn-block' %>
   <% end %>
-  <hr class="col-sm-12 top-buffer"/>
 </div>
 
 <div class="row">
+  <hr class="col-sm-12 top-buffer"/>
   <h3 class="h4 col-sm-12">Existing questions:</h3>
   <p class="col-sm-12">There are no questions, yet!</p>
 </div>

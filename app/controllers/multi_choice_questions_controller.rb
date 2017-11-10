@@ -2,12 +2,11 @@ class MultiChoiceQuestionsController < ApplicationController
   def new
     render :new, locals: {
       question: MultiChoiceQuestion.new,
-      survey: Survey.find(params[:survey_id])
+      survey: survey
     }
   end
 
   def create
-    survey = Survey.find(params[:survey_id])
     question = MultiChoiceQuestion.new q_params.merge(survey_id: survey.id)
 
     if question.save
@@ -35,7 +34,7 @@ class MultiChoiceQuestionsController < ApplicationController
 
     render :build_question,
            locals: {
-             survey: Survey.find(params[:survey_id]),
+             survey: survey,
              question: question
            }
   end
@@ -48,5 +47,11 @@ class MultiChoiceQuestionsController < ApplicationController
       .permit(:required, :multipart, :body,
               question_options_attributes: [:body])
   end
+
+  def survey
+    @survey ||= Survey.find(params[:survey_id])
+  end
+
+
 
 end

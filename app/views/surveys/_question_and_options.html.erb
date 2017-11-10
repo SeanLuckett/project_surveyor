@@ -1,0 +1,29 @@
+<div class="row">
+  <hr class="col-sm-12 top-buffer"/>
+  <h3 class="h4 col-sm-12">Existing questions:</h3>
+  <% unless survey.questions.any? %>
+      <p class="col-sm-12">There are no questions, yet!</p>
+  <% end %>
+  <% questions.each_with_index do |q, i| %>
+      <div class="col-sm-12 top-buffer">
+        <p><strong><%= "#{i + 1}. #{q.body}" %></strong></p>
+        <p class="text-secondary">
+          <em><%= q.requirement %></em>&nbsp;&nbsp;&nbsp;
+          <em><%= q.selection_type %></em>
+        </p>
+
+        <ul class="list-unstyled">
+          <% q.question_options.each_with_index do |opt, i| %>
+              <li><%= QuestionOptionDecorator.new(opt).text(i) %></li>
+          <% end %>
+        </ul>
+
+        <%= link_to 'Remove question',
+                    multi_choice_question_path(q),
+                    method: :delete,
+                    data: {
+                        confirm: 'You sure?'
+                    } %>
+      </div>
+  <% end %>
+</div>

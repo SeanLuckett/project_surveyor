@@ -37,9 +37,26 @@
   </div>
   <div class="row top-buffer">
     <div class="col-sm-12">
-      <%= form_for survey do |form| %>
+      <%= form_for [survey, question] do |form| %>
+          <div class="form-group bottom-buffer">
+            <%= form.label :body, 'What is your question?' %>
+            <%= form.text_field :body, class: 'form-control' %>
+          </div>
 
+          <%= form.fields_for :question_options do |qo_fields| %>
+              <div class="form-group">
+                <%= qo_fields.label :body, "Option #{qo_fields.options[:child_index] + 1}:" %>
+                <%= qo_fields.text_field :body, class: 'form-control' %>
+              </div>
+          <% end %>
+
+          <%= form.submit 'Add question',
+                          class: 'btn btn-primary btn-block' %>
       <% end %>
+    </div>
+    <div class="col-sm-12 top-buffer">
+      <%= link_to 'Back to previous step',
+                  new_survey_multi_choice_question_path(survey) %>
     </div>
   </div>
 </section>

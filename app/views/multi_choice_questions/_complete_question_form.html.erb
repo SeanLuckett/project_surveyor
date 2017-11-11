@@ -1,0 +1,37 @@
+<section class="add-question-options">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="h3 text-center">Add a multiple choice question:</h1>
+    </div>
+    <div class="col-sm-4 offset-sm-2 border border-dark border-left-0 border-bottom-0 border-top-0">
+      <h2 class="h5"><span class="text-secondary">1. Select options</span></h2></div>
+    <div class="col-sm-6"><h2 class="h5">2. Add question text</h2></div>
+    <div class="col-sm-12 top-buffer">
+      <p><em>Next, add question text, followed by text for each answer option.</em></p>
+    </div>
+  </div>
+  <div class="row top-buffer">
+    <div class="col-sm-12">
+      <%= form_for [survey, question] do |form| %>
+          <div class="form-group bottom-buffer">
+            <%= form.label :body, 'What is your question?' %>
+            <%= form.text_field :body, class: 'form-control' %>
+          </div>
+
+          <%= form.fields_for :question_options do |qo_fields| %>
+              <div class="form-group">
+                <%= qo_fields.label :body, "Option #{qo_fields.options[:child_index] + 1}:" %>
+                <%= qo_fields.text_field :body, class: 'form-control' %>
+              </div>
+          <% end %>
+
+          <%= form.submit 'Add question',
+                          class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+    <div class="col-sm-12 top-buffer">
+      <%= link_to 'Back to previous step',
+                  new_survey_multi_choice_question_path(survey) %>
+    </div>
+  </div>
+</section>

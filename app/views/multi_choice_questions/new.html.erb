@@ -15,8 +15,8 @@
 <%= render partial: 'add_question_form',
            locals: { survey: survey, question: question } %>
 
-<div class="row">
-  <hr class="col-sm-12 top-buffer"/>
-  <h3 class="h4 col-sm-12">Existing questions:</h3>
-  <p class="col-sm-12">There are no questions, yet!</p>
-</div>
+<%= render partial: 'surveys/question_and_options',
+           locals: {
+               questions: decorate_questions(survey.questions),
+               survey: survey
+           } %>

@@ -24,6 +24,7 @@
           <div class="card-body">
             <h3 class="h5 card-title"><%= "#{num + 1}. #{survey.title}" %></h3>
             <p class="card-text"><%= survey.description %></p>
+            <p class="card-text"><em><%= survey.answer_count %> responses</em></p>
             <%= link_to 'Take survey', take_survey_path(survey), class: 'btn btn-secondary' %>
             <%= link_to 'View results', results_view_survey_path(survey), class: 'btn btn-secondary' %>
           </div>

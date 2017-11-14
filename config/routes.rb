@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root to: 'surveys#index'
 
+  namespace :take do
+    get 'survey/:id', to: 'survey_takers#show', as: :survey
+    post 'survey/:id/tally', to: 'survey_takers#record_answers', as: :survey_tally
+  end
+
   resources :surveys do
     get 'add_question', to: 'surveys#add_question'
     get 'build_question', to: 'multi_choice_questions#build_question'

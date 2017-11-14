@@ -1,0 +1,13 @@
+<div class="form-group top-buffer">
+  <% question.question_options.each do |answer| %>
+      <div class="form-check">
+        <label class="form-check-label">
+          <%= check_box_tag "questions[#{i}][answers][]",
+                            answer.body,
+                            false,
+                            class: 'form-check-input' %>
+          <%= answer.body %>
+        </label>
+      </div>
+  <% end %>
+</div>

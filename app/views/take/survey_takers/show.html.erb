@@ -16,27 +16,27 @@
 <div class="row bottom-buffer">
   <div class="col-sm-12">
     <%= form_tag take_survey_tally_path(survey) do %>
-        <% questions.each_with_index do |question, i| %>
-            <%= hidden_field_tag "questions[#{i}][text]", question.question.body %>
+        <% questions.each_with_index do |inquiry, i| %>
+            <%= hidden_field_tag "questions[#{i}][text]", inquiry.question.body %>
 
             <p>
               <strong>
-                <%= MultiQuestionDecorator.new(question.question).display_html(i + 1) %>
+                <%= MultiQuestionDecorator.new(inquiry.question).display_html(i + 1) %>
               </strong>
               <br>
-              <% if question.error_msg.present? %>
+              <% if inquiry.error_msg.present? %>
                 <span class="text-danger">
-                  <%= question.error_msg %>
+                  <%= inquiry.error_msg %>
                 </span>
               <% end %>
             </p>
 
-            <% if question.question.multipart? %>
+            <% if inquiry.question.multipart? %>
                 <%= render partial: 'check_fields_for_question',
-                           locals: { question: question, i: i } %>
+                           locals: { inquiry: inquiry, i: i } %>
             <% else %>
                 <%= render partial: 'radio_fields_for_question',
-                           locals: { question: question, i: i } %>
+                           locals: { inquiry: inquiry, i: i } %>
             <% end %>
 
         <% end %>

@@ -15,20 +15,20 @@ class Take::SurveyTakersController < ApplicationController
     survey_questions = []
 
     params[:questions].each do |i, q_params|
-      question = SurveyQuestion.new(survey.questions.find_by body: q_params[:text])
-      question.selected_answers = q_params[:answers] if q_params[:answers]
+      inquiry = SurveyQuestion.new(survey.questions.find_by body: q_params[:text])
+      inquiry.selected_answers = q_params[:answers] if q_params[:answers]
 
-      unless question.question.required?
-        survey_questions << question
+      unless inquiry.question.required?
+        survey_questions << inquiry
         next
       end
 
-      if question.selected_answers.nil?
+      if inquiry.selected_answers.nil?
         incomplete = true
-        question.error_msg = 'Please select a response'
+        inquiry.error_msg = 'Please select a response'
       end
 
-      survey_questions << question
+      survey_questions << inquiry
     end
 
     if incomplete
@@ -39,8 +39,6 @@ class Take::SurveyTakersController < ApplicationController
     end
 
   end
-
-  SurveyQuestion = Struct.new :question, :selected_answers, :error_msg
 
   private
 
@@ -55,4 +53,6 @@ class Take::SurveyTakersController < ApplicationController
       end
     end
   end
+
+  SurveyQuestion = Struct.new :question, :selected_answers, :error_msg
 end

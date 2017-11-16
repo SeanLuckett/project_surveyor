@@ -17,21 +17,21 @@
   <div class="col-sm-12">
     <%= form_tag take_survey_tally_path(survey) do %>
         <% questions.each_with_index do |question, i| %>
-            <%= hidden_field_tag "questions[#{i}][text]", question.body %>
+            <%= hidden_field_tag "questions[#{i}][text]", question.question.body %>
 
             <p>
               <strong>
-                <%= MultiQuestionDecorator.new(question).display_html(i + 1) %>
+                <%= MultiQuestionDecorator.new(question.question).display_html(i + 1) %>
               </strong>
               <br>
-              <% if question.errors.any? %>
+              <% if question.error_msg.present? %>
                 <span class="text-danger">
-                  <%= question.errors.full_messages.first %>
+                  <%= question.error_msg %>
                 </span>
               <% end %>
             </p>
 
-            <% if question.multipart? %>
+            <% if question.question.multipart? %>
                 <%= render partial: 'check_fields_for_question',
                            locals: { question: question, i: i } %>
             <% else %>

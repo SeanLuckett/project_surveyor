@@ -1,7 +1,9 @@
 class Take::SurveyTakersController < ApplicationController
   def show
     survey = Survey.includes(questions: [:question_options]).find(params[:id])
-    render :show, locals: { survey: survey, questions: survey.questions }
+    survey_questions = survey.questions.map { |q| SurveyQuestion.new(q) }
+
+    render :show, locals: { survey: survey, questions: survey_questions }
   end
 
   def record_answers
@@ -10,32 +12,35 @@ class Take::SurveyTakersController < ApplicationController
                .find(params[:id])
 
     incomplete = false
-    submitted_questions = []
+    survey_questions = []
 
     params[:questions].each do |i, q_params|
-      question = survey.questions.find_by body: q_params[:text]
+      question = SurveyQuestion.new(survey.questions.find_by body: q_params[:text])
+      question.selected_answers = q_params[:answers] if q_params[:answers]
 
-      unless question.required?
-        submitted_questions << question
+      unless question.question.required?
+        survey_questions << question
         next
       end
 
-      if q_params[:answers].nil?
+      if question.selected_answers.nil?
         incomplete = true
-        question.errors.add(:please, 'select a response')
+        question.error_msg = 'Please select a response'
       end
 
-      submitted_questions << question
+      survey_questions << question
     end
 
     if incomplete
-      render :show, locals: { survey: survey, questions: submitted_questions }
+      render :show, locals: { survey: survey, questions: survey_questions }
     else
       tally_answers(survey.questions)
       redirect_to root_path
     end
 
   end
+
+  SurveyQuestion = Struct.new :question, :selected_answers, :error_msg
 
   private
 
